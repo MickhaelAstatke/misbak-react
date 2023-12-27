@@ -1,0 +1,62 @@
+h1,
+h2 {
+  text-align: left;
+  /* padding: 0 20px; */
+  /* max-width: 80%; */
+  /* margin-top: 0; */
+}
+
+.paragraph {
+  font-size: 55px;
+  /* padding: 0 20px; */
+  text-align: left;
+  margin-top: 0px;
+  font-family: "AbyssinicaSIL-Regular";
+}
+
+.inlineBlock {
+  display: inline-block;
+}
+
+.singleInput {
+  position: absolute;
+  width: 100%;
+  max-width: 30px;
+  height: 22px;
+  text-align: center;
+  border: 0px;
+  border-radius: 5px;
+  margin-top: -10px;
+  background-color: transparent;
+  font-size: 18px;
+}
+
+.dontBreak {
+  white-space: break-spaces;
+  display: inline-flex;
+}
+
+/* button {
+  position: absolute;
+  top: 50px;
+  right: 25px;
+  background: white;
+  border-radius: 26px;
+  padding: 10px 15px;
+  border: 0;
+  box-shadow: 1px 1px 1px black;
+} */
+
+@media all and (min-width: 0px) and (max-width: 480px) {
+  h2.title {
+    font-size: 15px;
+  }
+  .singleInput {
+    max-width: 12px;
+    font-size: 8px;
+  }
+  .paragraph {
+    font-size: 25px;
+    line-height: 52px;
+  }
+}

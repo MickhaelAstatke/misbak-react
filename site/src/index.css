@@ -1,0 +1,97 @@
+:root {
+  font-family: "AbyssinicaSIL-Regular", Inter, system-ui, Avenir, Helvetica,
+    Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark light;
+  color: rgba(0, 0, 0, 0.87);
+  color: #213547;
+  background-color: #242424;
+  background-color: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  /* padding: 0 20px; */
+  /* padding-top: 30px; */
+}
+
+#content {
+  /* max-width: 1280px; */
+  /* margin: 0 auto; */
+  /* padding: 0 20px; */
+  /* text-align: center; */
+  /* padding-top: 10px; */
+  font-family: "AbyssinicaSIL-Regular";
+}
+
+body {
+  margin: 0;
+  /* display: flex; */
+  place-items: center;
+  min-width: 320px;
+  width: 100%;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  margin: 10px;
+}
+
+.no-split-rows div {
+  padding-left: 30px;
+}
+
+.no-split-rows div.highlighted,
+.split-column div.highlighted {
+  border-left: 5px solid green;
+  background-color: #00ff0011;
+}
+
+.split-column {
+  column-count: 2;
+  column-rule: 1px solid black;
+  column-fill: balance;
+}
+
+.split-column > div {
+  break-inside: avoid;
+  padding-left: 30px;
+  padding-top: 15px;
+}
+
+.highlight {
+  color: red;
+}
+
+.house {
+  font-size: 17px;
+  color: lightblue;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #ffffff;
+    background-color: #000; /* #242424; */
+  }
+  .split-column {
+    column-rule: 1px solid white;
+  }
+}
+
+@font-face {
+  font-family: "AbyssinicaSIL-Regular"; /*Can be any text*/
+  src: local("AbyssinicaSIL-Regular"),
+    url("./assets/AbyssinicaSIL-Regular.ttf") format("truetype");
+}
+@media all and (min-width: 0px) and (max-width: 480px) {
+  .no-split-rows div {
+    padding-left: 15px;
+  }
+}
