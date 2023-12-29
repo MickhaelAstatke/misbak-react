@@ -20,6 +20,20 @@
   /* padding-top: 30px; */
 }
 
+.padding {
+  padding: 20px;
+}
+
+.margin {
+  margin: 20px auto;
+}
+
+.center {
+  display: flex !important;
+  text-align: center;
+  margin: 0 auto !important;
+}
+
 #content {
   /* max-width: 1280px; */
   /* margin: 0 auto; */

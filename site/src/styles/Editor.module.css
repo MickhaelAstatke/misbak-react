@@ -13,7 +13,11 @@ h2 {
   margin-top: 0px;
   font-family: "AbyssinicaSIL-Regular";
 }
-
+.readings {
+  font-size: 35px;
+  padding: 0px;
+  margin: 5px 0px;
+}
 .inlineBlock {
   display: inline-block;
 }

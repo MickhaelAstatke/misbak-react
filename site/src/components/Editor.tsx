@@ -9,8 +9,8 @@ import {
   useParams,
   useSubmit,
 } from "react-router-dom";
-import { isMobile } from "react-device-detect";
-import { Snackbar } from "@mui/material";
+import { Button, Snackbar } from "@mui/material";
+import AddOutlined from "@mui/icons-material/AddOutlined";
 import { HighlightEnums } from "../Helpers/HighlightEnums";
 
 interface DataInterface {
@@ -30,6 +30,10 @@ function Editor() {
 
   const handleClose = () => {
     setSnackOpen(false);
+  };
+
+  const openSnack = () => {
+    setSnackOpen(true);
   };
 
   useEffect(() => {
@@ -73,7 +77,7 @@ function Editor() {
         const wordKey = `arr-${arrIndex}_word-${wordIndex}`;
         const highlight = HighlightEnums.indexOf(word) > -1 ? "highlight" : "";
         if (word == "\n") {
-          return <br />;
+          return <br key={wordKey + "newline"} />;
         }
         const wordContent = word.split("").map((letter, letterIndex) => {
           //console.log("letter", letter);
@@ -81,7 +85,7 @@ function Editor() {
 
           if (!letter || letter == " ") {
             return (
-              <span className={styles.inlineBlock}>
+              <span key={key + "parent"} className={styles.inlineBlock}>
                 <span className={styles.singleWord} data-key={key} key={key}>
                   &nbsp;
                 </span>
@@ -132,7 +136,6 @@ function Editor() {
 
   return (
     <Form method="POST" id="content">
-      {/* {!isMobile && <button>Save</button>} */}
       <Snackbar
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         open={snackOpen}
@@ -145,18 +148,43 @@ function Editor() {
         {data.map((item, index) => {
           return (
             <div
-              key={index}
+              key={index + "div"}
               id={item.title}
               className={item.title == params.highlight ? "highlighted" : ""}
             >
-              <h2 className={styles.title}>
+              <h2 key={index + "h2"} className={styles.title}>
                 {item.title} <span className="house">{item.house}</span>
               </h2>
-              <p className={styles.paragraph}>{element[index]}</p>
+              <p key={index + "p"} className={styles.paragraph}>
+                {element[index]}
+              </p>
+
+              <p key={index + "dn"} className={styles.readings}>
+                ዲ.ን.: {item.paul}
+              </p>
+              <p key={index + "2nddn"} className={styles.readings}>
+                ንፍቅ ዲ.ን.: {item.meliekt}
+              </p>
+              <p key={index + "2ndpr"} className={styles.readings}>
+                ንፍቅ ካህን: {item.gh}
+              </p>
+              <p key={index + "wengel"} className={styles.readings}>
+                ወንጌል: {item.wengel}
+              </p>
+              <p key={index + "kidase"} className={styles.readings}>
+                ቅዳሴ: {item.kidase}
+              </p>
             </div>
           );
         })}
         <br />
+        <Button
+          className="padding margin center"
+          type="submit"
+          onClick={openSnack}
+        >
+          <AddOutlined /> <h2>Save</h2>
+        </Button>
         <br />
       </div>
     </Form>
