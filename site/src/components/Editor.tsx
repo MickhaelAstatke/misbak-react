@@ -37,7 +37,7 @@ function Editor() {
   };
 
   useEffect(() => {
-    console.log("in use effect", routeData);
+    // console.log("in use effect", routeData);
     setMilikit((_) => routeData.sign);
     setData((_) => routeData.data);
 
@@ -67,7 +67,7 @@ function Editor() {
       temp[key] = value;
       return temp;
     });
-    console.log("milikit changed", milikit);
+    //console.log("milikit changed", milikit);
   }
 
   const element = data.map((item, arrIndex) => {
@@ -218,12 +218,69 @@ export async function action({ request, params }) {
   const formData = await request.formData();
   const postData = Object.fromEntries(formData);
 
-  console.log("in update Action", postData);
-  return fetch("http://localhost:8080/save", {
+  //Store in form json file. This is used on react form
+  fetch("http://localhost:8080/save", {
     method: "POST",
     body: JSON.stringify({
       name: `${params.week}/${params.day}.sign.json`,
       json: postData,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+  });
+
+  // Fetch row file
+  const res = await fetch(
+    `http://localhost:8080/data/${params.week}/${params.day}.json`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    }
+  );
+  const rawData = await res.json();
+  console.log("rawData", rawData);
+
+  // Generate combined letter & sign array
+  const combined = [];
+  rawData.forEach((item, arrIndex) => {
+    let temp = [];
+    item.text.split(" ").map((word, wordIndex) => {
+      // console.log("word", word);
+      if (word == "\n") {
+        combined.push(temp);
+        temp = [];
+        return;
+      }
+      word.split("").map((letter, letterIndex) => {
+        const key = `arr-${arrIndex}_word-${wordIndex}_letter-${letterIndex}`;
+        temp.push({
+          t: letter,
+          s: postData[key],
+        });
+      });
+      temp.push({
+        t: " ",
+      });
+    });
+
+    if (temp || temp.length !== 0) {
+      combined.push(temp);
+      temp = [];
+    }
+
+    item.misbak = combined;
+  });
+
+  console.log("Combined Output", rawData);
+  return fetch("http://localhost:8080/save", {
+    method: "POST",
+    body: JSON.stringify({
+      name: `output/${params.day}.json`,
+      json: rawData,
     }),
     headers: {
       "Content-Type": "application/json",

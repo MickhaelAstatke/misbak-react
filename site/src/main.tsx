@@ -22,8 +22,8 @@ try {
   /* empty */
 }
 
-console.log("prod", prod);
-console.log("isDev", isDev);
+// console.log("prod", prod);
+// console.log("isDev", isDev);
 const router = createBrowserRouter([
   { path: "*", element: isDev ? <NotFound /> : <App /> },
   {
