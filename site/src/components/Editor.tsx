@@ -279,7 +279,7 @@ export async function action({ request, params }) {
   return fetch("http://localhost:8080/save", {
     method: "POST",
     body: JSON.stringify({
-      name: `output/${params.day}.json`,
+      name: `../output/${params.week}_${params.day}.json`,
       json: rawData,
     }),
     headers: {

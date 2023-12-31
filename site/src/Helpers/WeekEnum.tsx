@@ -1,8 +1,14 @@
 import { DayEnum } from "./DayEnum";
 import { FilsetaEnum } from "./FilsetaEnum";
 import { HosaenaEnum } from "./HosaenaEnum";
+import { MezmurEnum } from "./MezmurEnum";
 
 export const WeekEnum = [
+  {
+    title: "መዝሙር",
+    key: "mezmur",
+    child: MezmurEnum,
+  },
   {
     title: "ዘወረደ",
     key: "zewerede",

@@ -8,22 +8,22 @@ export const MonthEnum = [
   },
   {
     title: "ጥቅምት",
-    key: "tikimt",
+    key: "tekemt",
     child: DateEnum,
   },
   {
     title: "ኅዳር",
-    key: "hidar",
+    key: "hedar",
     child: DateEnum,
   },
   {
     title: "ታሕሳስ",
-    key: "tahisas",
+    key: "tahsas",
     child: DateEnum,
   },
   {
     title: "ጥር",
-    key: "tir",
+    key: "ter",
     child: DateEnum,
   },
   {
@@ -38,12 +38,12 @@ export const MonthEnum = [
   },
   {
     title: "ሚያዝያ",
-    key: "miyazya",
+    key: "miazia",
     child: DateEnum,
   },
   {
     title: "ግንቦት",
-    key: "ginbot",
+    key: "genbot",
     child: DateEnum,
   },
   {
@@ -58,12 +58,12 @@ export const MonthEnum = [
   },
   {
     title: "ነሐሴ",
-    key: "nehase",
+    key: "nehasse",
     child: DateEnum,
   },
   {
-    title: "ጷጉሜ",
-    key: "puagume",
+    title: "ጷጉሜን",
+    key: "pagumen",
     child: DateEnum,
   },
 ];
