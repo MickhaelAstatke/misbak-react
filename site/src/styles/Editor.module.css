@@ -29,8 +29,23 @@ h2 {
   height: 22px;
   text-align: center;
   border: 0px;
-  border-radius: 5px;
-  margin-top: -10px;
+  border-bottom: 0.1px solid lightgray;
+  border-radius: 0px;
+  margin-top: 0px;
+  background-color: transparent;
+  font-size: 18px;
+}
+
+.singleInput2 {
+  position: absolute;
+  width: 100%;
+  max-width: 30px;
+  height: 22px;
+  text-align: center;
+  border: 0px;
+  border-bottom: 0.1px solid lightgray;
+  border-radius: 0px;
+  margin-top: -25px;
   background-color: transparent;
   font-size: 18px;
 }
@@ -38,6 +53,7 @@ h2 {
 .dontBreak {
   white-space: break-spaces;
   display: inline-flex;
+  line-height: 120px;
 }
 
 /* button {

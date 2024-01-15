@@ -82,6 +82,7 @@ function Editor() {
         const wordContent = word.split("").map((letter, letterIndex) => {
           //console.log("letter", letter);
           const key = `arr-${arrIndex}_word-${wordIndex}_letter-${letterIndex}`;
+          const key2 = `arr-${arrIndex}_word-${wordIndex}_letter-${letterIndex}-s2`;
 
           if (!letter || letter == " ") {
             return (
@@ -99,6 +100,15 @@ function Editor() {
               onClick={onClickHandler}
               key={key}
             >
+              <input
+                type="text"
+                className={styles.singleInput2}
+                name={key2}
+                data-key={key2}
+                value={milikit[key2] || ""}
+                onChange={onMilikitChangeHandler}
+              />
+
               <input
                 type="text"
                 className={styles.singleInput}
@@ -250,7 +260,7 @@ export async function action({ request, params }) {
     },
   });
 
-  // Fetch row file
+  // Fetch raw file
   const res = await fetch(
     `http://localhost:8080/data/${params.week}/${params.day}.json`,
     {
@@ -264,9 +274,9 @@ export async function action({ request, params }) {
   console.log("rawData", rawData);
 
   // Generate combined letter & sign array
-  const combined = [];
   rawData.forEach((item, arrIndex) => {
     let temp = [];
+    const combined = [];
     item.text.split(" ").map((word, wordIndex) => {
       // console.log("word", word);
       if (word == "\n") {
@@ -276,10 +286,15 @@ export async function action({ request, params }) {
       }
       word.split("").map((letter, letterIndex) => {
         const key = `arr-${arrIndex}_word-${wordIndex}_letter-${letterIndex}`;
-        temp.push({
+        const key2 = `arr-${arrIndex}_word-${wordIndex}_letter-${letterIndex}-s2`;
+        const tempEntry = {
           t: letter,
           s: postData[key],
-        });
+        };
+        if (postData[key2]) {
+          tempEntry.s2 = postData[key2];
+        }
+        temp.push(tempEntry);
       });
       temp.push({
         t: " ",
