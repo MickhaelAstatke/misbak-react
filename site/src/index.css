@@ -89,6 +89,10 @@ h1 {
   color: lightblue;
 }
 
+input {
+  color: white !important;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     color: #ffffff;
