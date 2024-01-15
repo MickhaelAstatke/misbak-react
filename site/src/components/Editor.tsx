@@ -158,22 +158,41 @@ function Editor() {
               <p key={index + "p"} className={styles.paragraph}>
                 {element[index]}
               </p>
+              {item.paul ? (
+                <p key={index + "dn"} className={styles.readings}>
+                  ዲ.ን.: {item.paul}
+                </p>
+              ) : (
+                ""
+              )}
 
-              <p key={index + "dn"} className={styles.readings}>
-                ዲ.ን.: {item.paul}
-              </p>
-              <p key={index + "2nddn"} className={styles.readings}>
-                ንፍቅ ዲ.ን.: {item.meliekt}
-              </p>
-              <p key={index + "2ndpr"} className={styles.readings}>
-                ንፍቅ ካህን: {item.gh}
-              </p>
+              {item.meliekt ? (
+                <p key={index + "2nddn"} className={styles.readings}>
+                  ንፍቅ ዲ.ን.: {item.meliekt}
+                </p>
+              ) : (
+                ""
+              )}
+              {item.gh ? (
+                <p key={index + "2ndpr"} className={styles.readings}>
+                  ንፍቅ ካህን: {item.gh}
+                </p>
+              ) : (
+                ""
+              )}
               <p key={index + "wengel"} className={styles.readings}>
                 ወንጌል: {item.wengel}
               </p>
-              <p key={index + "kidase"} className={styles.readings}>
-                ቅዳሴ: {item.kidase}
-              </p>
+              {item.kidase ? (
+                <p key={index + "kidase"} className={styles.readings}>
+                  ቅዳሴ: {item.kidase}
+                </p>
+              ) : (
+                ""
+              )}
+
+              <br />
+              <br />
             </div>
           );
         })}
