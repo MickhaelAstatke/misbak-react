@@ -1,6 +1,12 @@
 import { DateEnum } from "./DateEnum";
+import { KidaseEnum } from "./KidaseEnum";
 
 export const MonthEnum = [
+  {
+    title: "ቅዳሴ",
+    key: "kidase",
+    child: KidaseEnum,
+  },
   {
     title: "መስከረም",
     key: "meskerem",
