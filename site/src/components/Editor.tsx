@@ -279,10 +279,10 @@ export async function action({ request, params }) {
     const combined = [];
     item.text.split(" ").map((word, wordIndex) => {
       // console.log("word", word);
-      if (word == "\n") {
+      if (word == "\n" || temp.length > 0) {
         combined.push(temp);
         temp = [];
-        return;
+        // return;
       }
       word.split("").map((letter, letterIndex) => {
         const key = `arr-${arrIndex}_word-${wordIndex}_letter-${letterIndex}`;
@@ -296,9 +296,9 @@ export async function action({ request, params }) {
         }
         temp.push(tempEntry);
       });
-      temp.push({
-        t: " ",
-      });
+      // temp.push({
+      //   t: " ",
+      // });
     });
 
     if (temp || temp.length !== 0) {
