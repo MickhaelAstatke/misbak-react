@@ -12,6 +12,22 @@ export const KidaseEnum = [
     key: "ክፍል_3",
   },
   {
+    title: "ክፍል 4",
+    key: "ክፍል_4",
+  },
+  {
+    title: "ክፍል 5",
+    key: "ክፍል_5",
+  },
+  {
+    title: "ክፍል 6",
+    key: "ክፍል_6",
+  },
+  {
+    title: "ክፍል 7",
+    key: "ክፍል_7",
+  },
+  {
     title: "ዘሐዋርያት",
     key: "ዘሐዋርያት",
   },
