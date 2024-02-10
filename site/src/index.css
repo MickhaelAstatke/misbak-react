@@ -44,7 +44,7 @@
 }
 
 body {
-  margin: 0;
+  margin: 50px;
   /* display: flex; */
   place-items: center;
   min-width: 320px;
@@ -87,6 +87,13 @@ h1 {
 .house {
   font-size: 17px;
   color: lightblue;
+}
+
+.handle {
+  height: 100px;
+  width: 5px;
+  background: white;
+  border-radius: 25px;
 }
 
 input {

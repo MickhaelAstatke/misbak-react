@@ -11,6 +11,8 @@ import Editor, {
 } from "./components/Editor.tsx";
 import NotFound from "./components/NotFound.tsx";
 import App from "./components/App.tsx";
+import AudioLyrics from "./components/AudioLyrics.tsx";
+import VisualizerImp from "./components/Visualizer.tsx";
 
 const queryParams = new URLSearchParams(window.location.search);
 const prod = !!queryParams.get("prod");
@@ -26,6 +28,8 @@ try {
 // console.log("isDev", isDev);
 const router = createBrowserRouter([
   { path: "*", element: isDev ? <NotFound /> : <App /> },
+  { path: "/lyrics", element: <AudioLyrics /> },
+  { path: "/visualizer", element: <VisualizerImp /> },
   {
     path: "/",
     element: isDev ? <RootLayout /> : <App />,
