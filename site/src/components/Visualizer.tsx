@@ -5,18 +5,36 @@ import Draggable from "react-draggable";
 export default function VisualizerImp() {
   const [blob, setBlob] = useState<Blob>();
   const [audioSrc, setAudioSrc] = useState<string>();
-  const [xPos, setXPos] = useState<number>();
+  const [xPos, setXPos] = useState(0);
+  const [times, setTimes] = useState([]);
   const [isDragging, setIsDragging] = useState<boolean>();
   const audioRef = useRef(null);
   const timeRef = useRef(null);
   const [currentTime, setCurrentTime] = useState(0);
+  const playerWidth = 1000;
+
+  useEffect(() => {
+    const onKeyDown = (event) => {
+      console.log("handleEsc", event.key);
+      if (event.key.toLowerCase() === "f" || event.key.toLowerCase() == "ፍ") {
+        setTimes((oldArray) => [...oldArray, audioRef.current.currentTime]);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, []);
 
   const onTimeUpdate = () => {
     setCurrentTime(audioRef.current.currentTime);
     console.log(audioRef.current.currentTime, isDragging);
 
     if (!isDragging && audioRef.current && audioRef.current.duration > 0) {
-      setXPos((audioRef.current.currentTime * 500) / audioRef.current.duration);
+      setXPos(
+        (audioRef.current.currentTime * playerWidth) / audioRef.current.duration
+      );
     }
     // Update the position of the current time indicator bar here.
   };
@@ -37,33 +55,44 @@ export default function VisualizerImp() {
   const handleStart = (e: Event, data: DraggableData) => {
     setIsDragging(true);
     console.log("handleStart", data.x);
-    const pct = data.x / 500;
-    audioRef.current.currentTime = pct * audioRef.current.duration;
+    if (data.x) {
+      const pct = data.x / playerWidth;
+      audioRef.current.currentTime = pct * audioRef.current.duration;
+    }
   };
   const handleDrag = (e: Event, data: DraggableData) => {
     console.log("handleDrag", data.x);
-    const pct = data.x / 500;
-    audioRef.current.currentTime = pct * audioRef.current.duration;
+    if (data.x) {
+      const pct = data.x / playerWidth;
+      audioRef.current.currentTime = pct * audioRef.current.duration;
+    }
   };
   const handleStop = (e: Event, data: DraggableData) => {
     setIsDragging(false);
     console.log("handleStop", data.x);
-    const pct = data.x / 500;
-    audioRef.current.currentTime = pct * audioRef.current.duration;
+    if (data.x) {
+      const pct = data.x / playerWidth;
+      audioRef.current.currentTime = pct * audioRef.current.duration;
+    }
   };
 
   const onMouseDown = (e: Event) => {
-    console.log("mouse down", e);
     const currentTargetRect = event.currentTarget.getBoundingClientRect();
     const event_offsetX = event.pageX - currentTargetRect.left;
-
-    console.log("event_offsetX", event_offsetX);
-    if (event_offsetX > 0 && event_offsetX < 500) {
-      const pct = event_offsetX / 500;
+    // console.log("event_offsetX", event_offsetX);
+    if (event_offsetX > 0 && event_offsetX < playerWidth) {
+      setIsDragging(true);
+      const pct = event_offsetX / playerWidth;
       audioRef.current.currentTime = pct * audioRef.current.duration;
-
-      console.log("setting", pct * audioRef.current.duration);
+      setXPos(
+        (audioRef.current.currentTime * playerWidth) / audioRef.current.duration
+      );
+      console.log("mouse down setting", pct * audioRef.current.duration);
     }
+  };
+
+  const onMouseUp = (e: Event) => {
+    setIsDragging(false);
   };
 
   return (
@@ -91,11 +120,17 @@ export default function VisualizerImp() {
           />
         </div>
       )}
-      <span>{currentTime}</span>
+      <span>
+        {currentTime} - {times.toString()}
+      </span>
       <br />
 
       {blob && (
-        <div onMouseUp={onMouseDown}>
+        <div
+          onMouseDown={onMouseDown}
+          onMouseUp={onMouseUp}
+          style={{ display: "flex" }}
+        >
           <Draggable
             axis="x"
             handle=".handle"
@@ -108,7 +143,7 @@ export default function VisualizerImp() {
               x: xPos,
               y: 0,
             }}
-            bounds={{ left: 0, top: 0, right: 500, bottom: 20 }}
+            bounds={{ left: 0, top: 0, right: playerWidth, bottom: 20 }}
           >
             <div>
               <div className="handle">&nbsp;</div>
@@ -116,22 +151,21 @@ export default function VisualizerImp() {
           </Draggable>
           <AudioVisualizer
             blob={blob}
-            width={500}
-            height={75}
-            barWidth={1}
+            width={playerWidth}
+            height={150}
+            barWidth={2}
             currentTime={audioRef.current && audioRef.current.currentTime}
-            gap={0}
+            gap={0.5}
             barColor={"#f76565"}
-            // barPlayedColor={"#00bbff"}
           />
         </div>
       )}
-      {/*
+      {/* 
       <br />
       {blob && (
         <AudioVisualizer
           blob={blob}
-          width={500}
+          width={playerWidth}
           height={75}
           barWidth={3}
           gap={2}

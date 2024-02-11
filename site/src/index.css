@@ -90,8 +90,8 @@ h1 {
 }
 
 .handle {
-  height: 100px;
-  width: 5px;
+  height: 200px;
+  width: 3px;
   background: white;
   border-radius: 25px;
 }
