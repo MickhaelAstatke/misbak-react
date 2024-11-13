@@ -162,6 +162,9 @@ function Editor() {
               id={item.title}
               className={item.title == params.highlight ? "highlighted" : ""}
             >
+            <h2 key={index + "beal"} className={styles.readings}>
+                በዓል: {item.beal}
+              </h2>
               <h2 key={index + "h2"} className={styles.title}>
                 {item.title} <span className="house">{item.house}</span>
               </h2>
