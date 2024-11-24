@@ -112,4 +112,8 @@ input {
   .no-split-rows div {
     padding-left: 15px;
   }
+
+  .beal {
+    color: red;
+  }
 }

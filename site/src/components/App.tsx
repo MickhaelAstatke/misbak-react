@@ -76,8 +76,7 @@ const App = () => {
         <span className="house">{item.house || item.houseShort}</span>
       </h2>
 
-      <h3 className={styles.beal}>Beal: {item.beal || "text"}</h3>
-
+    
       <p className={styles.paragraph}>
         {item.text &&
           item.text.split(" ").map((word, wordIndex) => {
