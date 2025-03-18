@@ -50,6 +50,20 @@ h2 {
   font-size: 18px;
 }
 
+.singleInput3 {
+  position: absolute;
+  width: 100%;
+  max-width: 30px;
+  height: 22px;
+  text-align: center;
+  border: 0px;
+  border-bottom: 0.1px solid lightgray;
+  border-radius: 0px;
+  margin-top: -50px;
+  background-color: transparent;
+  font-size: 18px;
+}
+
 .dontBreak {
   white-space: break-spaces;
   display: inline-flex;
@@ -74,6 +88,7 @@ h2 {
   .singleInput {
     max-width: 12px;
     font-size: 8px;
+    color: black;
   }
   .paragraph {
     font-size: 25px;

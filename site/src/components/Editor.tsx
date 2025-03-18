@@ -69,8 +69,9 @@ function Editor() {
     });
     //console.log("milikit changed", milikit);
   }
+  const normalizedData = Array.isArray(data) ? data : [data];
 
-  const element = data.map((item, arrIndex) => {
+  const element = normalizedData.map((item, arrIndex) => {
     return (
       item.text &&
       item.text.split(" ").map((word, wordIndex) => {
@@ -83,6 +84,8 @@ function Editor() {
           //console.log("letter", letter);
           const key = `arr-${arrIndex}_word-${wordIndex}_letter-${letterIndex}`;
           const key2 = `arr-${arrIndex}_word-${wordIndex}_letter-${letterIndex}-s2`;
+          const key3 = `arr-${arrIndex}_word-${wordIndex}_letter-${letterIndex}-s3`;
+
 
           if (!letter || letter == " ") {
             return (
@@ -100,6 +103,15 @@ function Editor() {
               onClick={onClickHandler}
               key={key}
             >
+
+            <input
+                type="text"
+                className={styles.singleInput3}
+                name={key3}
+                data-key={key3}
+                value={milikit[key3] || ""}
+                onChange={onMilikitChangeHandler}
+              />
               <input
                 type="text"
                 className={styles.singleInput2}
@@ -143,7 +155,13 @@ function Editor() {
 
     return () => clearInterval(intervalId); //This is important
   }, []);
+  
 
+  console.log("🚀 Editor received data:", data, "Type:", typeof data);
+  if (!data){
+    return <h1>የሚሰራ መረጃ የለም።</h1>;
+  } 
+  
   return (
     <Form method="POST" id="content">
       <Snackbar
@@ -155,7 +173,7 @@ function Editor() {
       />
 
       <div className={layout}>
-        {data.map((item, index) => {
+        {normalizedData.map((item, index) => {
           return (
             <div
               key={index + "div"}
@@ -296,6 +314,8 @@ export async function action({ request, params }) {
       word.split("").map((letter, letterIndex) => {
         const key = `arr-${arrIndex}_word-${wordIndex}_letter-${letterIndex}`;
         const key2 = `arr-${arrIndex}_word-${wordIndex}_letter-${letterIndex}-s2`;
+        const key3 = `arr-${arrIndex}_word-${wordIndex}_letter-${letterIndex}-s3`;
+
         const tempEntry = {
           t: letter,
           s: postData[key],
