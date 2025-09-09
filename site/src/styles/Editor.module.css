@@ -34,6 +34,8 @@ h2 {
   margin-top: 0px;
   background-color: transparent;
   font-size: 18px;
+  color: black;
+ -webkit-text-fill-color: black;  
 }
 
 .singleInput2 {
@@ -48,6 +50,8 @@ h2 {
   margin-top: -25px;
   background-color: transparent;
   font-size: 18px;
+  color: black;
+ -webkit-text-fill-color: black;   
 }
 
 .singleInput3 {
@@ -62,6 +66,8 @@ h2 {
   margin-top: -50px;
   background-color: transparent;
   font-size: 18px;
+  color: black;
+ -webkit-text-fill-color: black;    
 }
 
 .dontBreak {
